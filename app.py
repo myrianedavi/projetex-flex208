@@ -17,7 +17,7 @@ def sobre():
     return render_template("sobre.html")
 
 
-@app.route("/ola/<nome>")
+@app.route("/ola/myrianzinha")
 def ola(myrianzinha):
     return render_template("ola.html", nome=myrianzinha)
 
