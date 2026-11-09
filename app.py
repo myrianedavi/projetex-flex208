@@ -17,9 +17,17 @@ def sobre():
     return render_template("sobre.html")
 
 
-@app.route("/ola")
-def ola(myrianzinha):
-    return render_template("ola.html", nome=myrianzinha)
+@app.route("/ola/<nome>")
+def ola(nome):
+    return render_template("ola.html", nome=nome)
+
+
+
+
+
+@app.route("/idade/<int:idade>")
+def idade(idade):
+    return render_template("idade.html", idade=idade)
 
 
 
