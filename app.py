@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import aluno_service
+import curso_service
 
 app = Flask(__name__)
 
@@ -47,6 +49,18 @@ def tabuadas():
 
 
 
+@app.route("/aluno/")
+def listar_alunos():
+    alunos = aluno_service.listar()
+    return render_template("aluno/listar.html", alunos=alunos)
+
+
+
+
+@app.route("/curso/")
+def listar_curso():
+    curso = curso_service.listar()
+    return render_template("curso/lista.html", curso=curso)
 
 
 
