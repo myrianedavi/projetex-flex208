@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 import aluno_service
 import curso_service
 
@@ -61,6 +61,30 @@ def listar_alunos():
 def listar_curso():
     curso = curso_service.listar()
     return render_template("curso/lista.html", curso=curso)
+
+
+
+@app.route("/aluno/novo")
+def novo_aluno():
+    return render_template("aluno/form.html", aluno=None)
+
+
+
+@app.route("/aluno/salvar", methods=["POST"])
+def salvar_aluno():
+    id_aluno = request.form["id"]
+    nome = request.form["nome"]
+    telefone = request.form["telefone"]
+    cidade = request.form["cidade"]
+
+
+    if id_aluno == "":
+        aluno_service.cadastrar(nome, telefone, cidade)
+    # Próxima aula: se o id vier preenchido, editar o aluno
+
+
+    return redirect("/aluno/")
+
 
 
 
